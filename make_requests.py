@@ -25,16 +25,12 @@ def get_data(get_resp):
             purpose = elem.text[9:]
     return [name, purpose]
 
-
-def save(data, file):
-    file.write(data[0] + "\t" + data[1] + "\n")
-
-
 if __name__ == "__main__":
     f = open("companies.txt", "w")
-    f.write("Name\tPurpose\n")
+    text = "Name\tPurpose\n"
     for i in range(50):
         data = get_data(view_source("http://18.207.92.139:8000/random_company"))
-        save(data, f)
+        text = text + data[0] + "\t" + data[1] + "\n"
         time.sleep(1)
+    f.write(text)
     f.close()
