@@ -25,6 +25,7 @@ def get_data(get_resp):
             purpose = elem.text[9:]
     return [name, purpose]
 
+
 if __name__ == "__main__":
     f = open("companies.txt", "w")
     text = "Name\tPurpose\n"
