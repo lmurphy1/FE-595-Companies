@@ -11,13 +11,16 @@ from bs4 import BeautifulSoup
 def view_source(url):
     try:
         get_resp = requests.get(url)
+        return get_resp.text
     except:
         print("Request failed")
-    return get_resp
+        return ""
 
 
 def get_data(get_resp):
-    soup = BeautifulSoup(get_resp.text, "html.parser")
+    soup = BeautifulSoup(get_resp, "html.parser")
+    name = []
+    purpose = []
     for elem in soup.find_all("li"):
         if elem.text.startswith("Name: "):
             name = elem.text[6:]
